@@ -531,7 +531,7 @@ def get_results():
     return load_results()
 
 
-@app.get("/health")
+@app.head("/health")
 def health():
     return {"status": "ok"}
 
