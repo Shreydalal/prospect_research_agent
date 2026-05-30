@@ -536,7 +536,7 @@ def health():
     return {"status": "ok"}
 
 
-frontend_path = Path("../frontend")
+frontend_path = Path(__file__).parent.parent / "frontend"
 dist_path = frontend_path / "dist"
 
 @app.get("/")
