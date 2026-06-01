@@ -38,7 +38,7 @@ export default function App() {
 
   // Toolbar states
   const [searchTerm, setSearchTerm] = useState('');
-  const [viewMode, setViewMode] = useState('table'); // 'table' | 'cards'
+  const [viewMode, setViewMode] = useState(typeof window !== 'undefined' && window.innerWidth < 768 ? 'cards' : 'table'); // 'table' | 'cards' dynamically set
   const [hasLoadedResults, setHasLoadedResults] = useState(false);
   
   // Modal state
@@ -388,7 +388,7 @@ export default function App() {
           </div>
           <span className="badge">
             <span className="badge-dot"></span>
-            AI-Engine Activated
+            <span className="badge-text">AI-Engine Activated</span>
           </span>
         </div>
       </header>
@@ -729,7 +729,7 @@ export default function App() {
         {/* ── Dataset/Results Section ── */}
         <div className="panel results-section" style={{ marginTop: '1rem' }}>
           <div className="results-toolbar">
-            <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+            <div className="results-title-group">
               <h2 style={{ fontSize: '16px', fontWeight: '600' }}>Enriched Company Dataset</h2>
               <span className="badge" style={{ background: 'var(--bg-tertiary)', borderColor: 'var(--border-color)' }}>
                 {filteredResults.length} Record(s)
@@ -737,7 +737,7 @@ export default function App() {
             </div>
 
             {/* Actions Toolbar */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <div className="results-actions">
               <button 
                 className="btn btn-secondary" 
                 onClick={() => loadResults(false)}
